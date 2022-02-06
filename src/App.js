@@ -6,11 +6,12 @@ import ReduxToastr from 'react-redux-toastr';
 
 import '~/config/ReactotronConfig';
 
-import history from './services/history';
 import { store, persistor } from '~/store';
 
 import '~/styles/fonts.css';
 import GlobalStyle from '~/styles/global';
+
+import history from './services/history';
 
 import Routes from './routes';
 
@@ -25,7 +26,7 @@ function App() {
             newestOnTop={false}
             preventDuplicates
             position="bottom-right"
-            getState={state => state.toastr}
+            getState={(state) => state.toastr}
             transitionIn="fadeIn"
             transitionOut="fadeOut"
             progressBar

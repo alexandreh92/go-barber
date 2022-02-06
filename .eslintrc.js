@@ -21,6 +21,13 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'prettier', 'import'],
   rules: {
     'import/no-unresolved': 'error',
+    'prettier/prettier': 'error',
+    'react/jsx-filename-extension': ['warn', { extensions: ['.js', '.jsx'] }],
+    'import/prefer-default-export': 'off',
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    'no-console': ['error', { allow: ['tron'] }],
+    'react/jsx-props-no-spreading': 'off',
+    camelcase: 'off',
   },
   settings: {
     'import/parsers': {
