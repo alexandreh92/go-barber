@@ -10,11 +10,11 @@ import AuthActions from '~/store/ducks/auth';
 export function* signIn({ email, password }) {
   yield put(AuthActions.setLoading());
   try {
-    const response = yield call(api.post, 'sessions', {
-      user: { email, password },
-    });
+    const response = yield call(api.post, 'sessions', { email, password });
 
-    const { user, token } = response.data;
+    const token = response.headers.authorization;
+
+    const { user } = response.data;
 
     if (!user.provider) {
       toastr.error(

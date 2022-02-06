@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input } from '@rocketseat/unform';
@@ -18,7 +19,7 @@ const schema = Yup.object().shape({
     .required('A confirmação de senha é obrigatória'),
 });
 
-export default function SignUp() {
+const SignUp = () => {
   const handleSubmit = ({ name, email, password, password_confirmation }) => {
     console.log(name, email, password, password_confirmation);
   };
@@ -46,4 +47,6 @@ export default function SignUp() {
       </Form>
     </>
   );
-}
+};
+
+export default SignUp;

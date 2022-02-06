@@ -15,13 +15,12 @@ import GlobalStyle from '~/styles/global';
 import history from './services/history';
 
 import Routes from './routes';
+import HistoryRouter from './routes/HistoryRouter';
 
-import Foo from './Foo';
-
-function App() {
-  return (
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
+const App = () => (
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      <HistoryRouter history={history}>
         <GlobalStyle />
         <ReduxToastr
           timeOut={4000}
@@ -34,11 +33,10 @@ function App() {
           progressBar
           closeOnToastrClick
         />
-        {/* <Routes /> */}
-        <Foo />
-      </PersistGate>
-    </Provider>
-  );
-}
+        <Routes />
+      </HistoryRouter>
+    </PersistGate>
+  </Provider>
+);
 
 export default App;

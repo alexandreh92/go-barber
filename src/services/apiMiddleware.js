@@ -4,24 +4,15 @@ const apiMiddleware =
   ({ getState }) =>
   (next) =>
   (action) => {
-    const token = getState?.().auth?.token;
-
-    if (token !== null && token !== undefined) {
-      api.interceptors.request.use(
-        (config) => {
-          const newConfig = config;
-
-          if (token !== null) {
-            newConfig.headers.Authorization = `Bearer ${token}`;
-          }
-
-          return newConfig;
-        },
-        (err) => Promise.reject(err)
-      );
-    }
-
     const returnValue = next(action);
+
+    const { token } = getState().auth;
+
+    if (token) {
+      api.defaults.headers.common.authorization = token;
+    } else {
+      delete api.defaults.headers.common.authorization;
+    }
 
     return returnValue;
   };

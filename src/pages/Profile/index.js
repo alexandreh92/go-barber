@@ -8,7 +8,7 @@ import AvatarInput from './AvatarInput';
 
 import { Container } from './styles';
 
-export default function Profile() {
+const Profile = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
 
@@ -50,4 +50,6 @@ export default function Profile() {
       </button>
     </Container>
   );
-}
+};
+
+export default Profile;

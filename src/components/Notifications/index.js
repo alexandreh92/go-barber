@@ -14,7 +14,7 @@ import {
   Scroll,
 } from './styles';
 
-export default function Notifications() {
+const Notifications = () => {
   const [visible, setVisible] = useState(false);
   const [notifications, setNotifications] = useState([]);
 
@@ -84,4 +84,6 @@ export default function Notifications() {
       </NotificationList>
     </Container>
   );
-}
+};
+
+export default Notifications;

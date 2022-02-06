@@ -1,22 +1,24 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
-import { Switch } from 'react-router-dom';
+import { Routes as Switch, Route } from 'react-router-dom';
 
 import SignIn from '~/pages/Auth/SignIn';
 import SignUp from '~/pages/Auth/SignUp';
 import Dashboard from '~/pages/Dashboard';
 import Profile from '~/pages/Profile';
 
-import Route from './Route';
+import AuthRoute from './AuthRoute';
+import PrivateRoute from './PrivateRoute';
 
-export default function Routes() {
-  return (
-    <div />
-    // <Switch>
-    //   <Route path="/" exact component={SignIn} />
-    //   <Route path="/register" component={SignUp} />
-    //   <Route path="/dashboard" component={Dashboard} isPrivate />
-    //   <Route path="/profile" component={Profile} isPrivate />
-    // </Switch>
-  );
-}
+const Routes = () => (
+  <Switch>
+    <Route element={<AuthRoute />}>
+      <Route path="/" exact element={<SignIn />} />
+      <Route path="/register" element={<SignUp />} />
+    </Route>
+    <Route element={<PrivateRoute />}>
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/profile" element={<Profile />} />
+    </Route>
+  </Switch>
+);
+
+export default Routes;

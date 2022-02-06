@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import Header from '~/components/Header';
 import { Wrapper } from './styles';
 
-export default function DefaultLayout({ children }) {
-  return (
-    <Wrapper>
-      <Header />
-      {children}
-    </Wrapper>
-  );
-}
+const DefaultLayout = ({ children }) => (
+  <Wrapper>
+    <Header />
+    {children}
+  </Wrapper>
+);
+
+export default DefaultLayout;
 
 DefaultLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
