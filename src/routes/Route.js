@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
@@ -12,26 +13,27 @@ export default function RouteWrapper({
   isPrivate = false,
   ...rest
 }) {
-  const signed = store.getState().auth.signedIn;
+  // const signed = store.getState().auth.signedIn;
 
-  if (!signed && isPrivate) {
-    return <Redirect to="/" />;
-  }
-  if (signed && !isPrivate) {
-    return <Redirect to="/dashboard" />;
-  }
+  // if (!signed && isPrivate) {
+  //   return <Redirect to="/" />;
+  // }
+  // if (signed && !isPrivate) {
+  //   return <Redirect to="/dashboard" />;
+  // }
 
-  const Layout = signed ? DefaultLayout : AuthLayout;
+  // const Layout = signed ? DefaultLayout : AuthLayout;
 
   return (
-    <Route
-      {...rest}
-      render={props => (
-        <Layout>
-          <Component {...props} />
-        </Layout>
-      )}
-    />
+    <div />
+    // <Route
+    //   {...rest}
+    //   render={props => (
+    //     <Layout>
+    //       <Component {...props} />
+    //     </Layout>
+    //   )}
+    // />
   );
 }
 
