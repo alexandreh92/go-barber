@@ -2,27 +2,26 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
 
+import UserActions from '~/store/ducks/user';
+import AuthActions from '~/store/ducks/auth';
 import AvatarInput from './AvatarInput';
 
 import { Container } from './styles';
 
-import UserActions from '~/store/ducks/user';
-import AuthActions from '~/store/ducks/auth';
-
-export default function Profile() {
+const Profile = () => {
   const dispatch = useDispatch();
-  const profile = useSelector(state => state.user.profile);
+  const profile = useSelector((state) => state.user.profile);
 
   const { updateProfileRequest } = UserActions;
   const { signOut } = AuthActions;
 
-  function handleSubmit(data) {
+  const handleSubmit = (data) => {
     dispatch(updateProfileRequest(data));
-  }
+  };
 
-  function handleLogout() {
+  const handleLogout = () => {
     dispatch(signOut());
-  }
+  };
 
   return (
     <Container>
@@ -51,4 +50,6 @@ export default function Profile() {
       </button>
     </Container>
   );
-}
+};
+
+export default Profile;

@@ -30,9 +30,9 @@ export const success = (state, { token }) => ({
   loading: false,
 });
 
-export const logout = state => ({ ...state, signedIn: false, token: null });
+export const logout = (state) => ({ ...state, signedIn: false, token: null });
 
-export const loading = state => ({ ...state, loading: !state.loading });
+export const loading = (state) => ({ ...state, loading: !state.loading });
 
 /* Reducers to types */
 

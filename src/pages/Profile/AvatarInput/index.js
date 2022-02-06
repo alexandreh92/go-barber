@@ -3,7 +3,7 @@ import { useField } from '@rocketseat/unform';
 
 import { Container } from './styles';
 
-export default function AvatarInput() {
+const AvatarInput = () => {
   const { defaultValue, registerField } = useField('avatar');
 
   const [preview, setPreview] = useState(defaultValue && defaultValue.url);
@@ -42,4 +42,6 @@ export default function AvatarInput() {
       </label>
     </Container>
   );
-}
+};
+
+export default AvatarInput;

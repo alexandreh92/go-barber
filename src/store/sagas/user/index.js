@@ -7,23 +7,18 @@ import UserActions from '~/store/ducks/user';
 
 export function* updateProfile({ data }) {
   try {
-    const {
-      name,
-      password,
-      passwordConfirmation,
-      actualPassword,
-      avatar,
-    } = data;
+    const { name, password, passwordConfirmation, actualPassword, avatar } =
+      data;
 
     const fd = new FormData();
 
-    if (avatar) fd.append('[profile]avatar', avatar);
-    fd.append('[profile]name', name);
+    if (avatar) fd.append('avatar', avatar);
+    fd.append('name', name);
 
     if (actualPassword) {
-      fd.append('[profile]current_password', actualPassword);
-      fd.append('[profile]password', password);
-      fd.append('[profile]password_confirmation', passwordConfirmation);
+      fd.append('current_password', actualPassword);
+      fd.append('password', password);
+      fd.append('password_confirmation', passwordConfirmation);
     }
 
     const response = yield call(api.put, 'profile', fd);

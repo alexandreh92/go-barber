@@ -11,8 +11,8 @@ export const Badge = styled.button`
   border: 0;
   position: relative;
 
-  ${props =>
-    props.hasUnread &&
+  ${({ hasUnread }) =>
+    hasUnread &&
     css`
       &::after {
         position: absolute;
@@ -35,7 +35,7 @@ export const NotificationList = styled.div`
   background: rgba(0, 0, 0, 0.6);
   border-radius: 4px;
   padding: 15px 5px;
-  display: ${props => (props.visible ? 'true' : 'none')};
+  display: ${({ visible }) => (visible ? 'true' : 'none')};
   &::before {
     content: '';
     position: absolute;
@@ -77,7 +77,7 @@ export const Notification = styled.div`
     color: ${lighten(0.2, '#7159c1')};
   }
 
-  ${props =>
+  ${(props) =>
     props.unread &&
     css`
       &::after {
