@@ -1,10 +1,10 @@
 import { all, takeLatest } from 'redux-saga/effects';
 
-import { signIn, signOut } from './auth';
 import { AuthTypes } from '~/store/ducks/auth';
+import { UserTypes } from '~/store/ducks/user';
+import { signIn, signOut } from './auth';
 
 import { updateProfile } from './user';
-import { UserTypes } from '~/store/ducks/user';
 
 export default function* rootSaga() {
   return yield all([

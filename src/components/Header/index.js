@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 import Notifications from '~/components/Notifications';
 
-import { Container, Content, Profile } from './styles';
-
 import logo from '~/assets/logo-purple.svg';
 
+import { Container, Content, Profile } from './styles';
+
 export default function Header() {
-  const { name, avatar } = useSelector(state => state.user.profile);
+  const { name, avatar } = useSelector((state) => state.user.profile);
 
   return (
     <Container>

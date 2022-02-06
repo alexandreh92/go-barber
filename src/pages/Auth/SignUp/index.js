@@ -19,9 +19,9 @@ const schema = Yup.object().shape({
 });
 
 export default function SignUp() {
-  function handleSubmit({ name, email, password, password_confirmation }) {
+  const handleSubmit = ({ name, email, password, password_confirmation }) => {
     console.log(name, email, password, password_confirmation);
-  }
+  };
 
   return (
     <>

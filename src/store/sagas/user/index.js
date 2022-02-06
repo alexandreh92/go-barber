@@ -7,13 +7,8 @@ import UserActions from '~/store/ducks/user';
 
 export function* updateProfile({ data }) {
   try {
-    const {
-      name,
-      password,
-      passwordConfirmation,
-      actualPassword,
-      avatar,
-    } = data;
+    const { name, password, passwordConfirmation, actualPassword, avatar } =
+      data;
 
     const fd = new FormData();
 

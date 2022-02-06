@@ -8,18 +8,18 @@ const api = axios.create({
 
 // INTERCEPTOR FOR AUTH
 api.interceptors.request.use(
-  function(config) {
+  (config) => {
+    const newConfig = config;
+
     const { token } = store.getState().auth;
 
     if (token !== null) {
-      config.headers.Authorization = `Bearer ${token}`;
+      newConfig.headers.Authorization = `Bearer ${token}`;
     }
 
-    return config;
+    return newConfig;
   },
-  function(err) {
-    return Promise.reject(err);
-  }
+  (err) => Promise.reject(err)
 );
 
 export default api;
