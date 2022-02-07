@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { store } from '~/store';
 import DefaultLayout from '~/layouts/default';
 import { useSelector } from 'react-redux';
 
