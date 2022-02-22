@@ -7,9 +7,9 @@ import { signIn, signOut } from './auth';
 import { updateProfile } from './user';
 
 export default function* rootSaga() {
-  return yield all([
+  yield all([
     takeLatest(AuthTypes.SIGN_IN_REQUEST, signIn),
-    takeLatest(AuthTypes.SIGN_OUT, signOut),
+    takeLatest(AuthTypes.SIGN_OUT_REQUEST, signOut),
     takeLatest(UserTypes.UPDATE_PROFILE_REQUEST, updateProfile),
   ]);
 }

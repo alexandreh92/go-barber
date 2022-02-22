@@ -6,11 +6,24 @@ import history from '~/services/history';
 import api from '~/services/api';
 
 import AuthActions from '~/store/ducks/auth';
+import { SignInRequestPayload } from '~/store/ducks/auth/types';
+import { AxiosResponse } from 'axios';
 
-export function* signIn({ email, password }) {
+interface SignInRequestResponse {
+  user: User;
+}
+
+export function* signIn({ email, password }: SignInRequestPayload) {
   yield put(AuthActions.setLoading());
   try {
-    const response = yield call(api.post, 'sessions', { email, password });
+    const response: AxiosResponse<SignInRequestResponse> = yield call(
+      api.post,
+      'sessions',
+      {
+        email,
+        password,
+      }
+    );
 
     const token = response.headers.authorization;
 

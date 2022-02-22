@@ -14,9 +14,13 @@ import {
   Scroll,
 } from './styles';
 
+interface NotificationsResponse {
+  notifications: Notification[];
+}
+
 const Notifications = () => {
   const [visible, setVisible] = useState(false);
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
 
   const hasUnread = useMemo(
     () => !!notifications.find((notification) => notification.read === false),
@@ -24,9 +28,9 @@ const Notifications = () => {
   );
 
   const loadNotifications = useCallback(async () => {
-    const response = await api.get('notifications');
+    const response = await api.get<NotificationsResponse>('notifications');
 
-    const data = response.data.map((notification) => ({
+    const data = response.data.notifications.map((notification) => ({
       ...notification,
       timeDistance: formatDistance(
         parseISO(notification.created_at),
@@ -49,7 +53,7 @@ const Notifications = () => {
     setVisible(!visible);
   };
 
-  const handleMarkAsread = async (id) => {
+  const handleMarkAsread = async (id: number) => {
     await api.patch(`notifications/${id}`);
 
     setNotifications(

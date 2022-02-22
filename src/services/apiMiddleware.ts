@@ -1,6 +1,7 @@
+import { Middleware } from 'redux';
 import api from './api';
 
-const apiMiddleware =
+const apiMiddleware: Middleware<Record<string, unknown>, ReduxState> =
   ({ getState }) =>
   (next) =>
   (action) => {

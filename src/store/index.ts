@@ -1,15 +1,11 @@
-/* eslint-disable no-unused-vars */
 import { persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
-// import { routerMiddleware } from 'connected-react-router';
-// import jwtDecode from 'jwt-decode';
 
 import apiMiddleware from '~/services/apiMiddleware';
 
 import createStore from './createStore';
 import persistReducers from './persistReducers';
 
-import history from '../services/history';
 import rootReducer from './ducks';
 import rootSaga from './sagas';
 
@@ -28,3 +24,5 @@ const persistor = persistStore(store);
 sagaMiddleware.run(rootSaga);
 
 export { persistor, store };
+
+export type Middlewares = typeof middlewares;

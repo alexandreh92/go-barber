@@ -26,7 +26,6 @@ const App = () => (
           newestOnTop={false}
           preventDuplicates
           position="bottom-right"
-          getState={(state) => state.toastr}
           transitionIn="fadeIn"
           transitionOut="fadeOut"
           progressBar

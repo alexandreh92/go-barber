@@ -52,6 +52,12 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    '@typescript-eslint/no-empty-interface': [
+      'error',
+      {
+        allowSingleExtends: true,
+      },
+    ],
   },
   settings: {
     'import/parsers': {
