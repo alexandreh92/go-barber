@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Form, Input } from '@rocketseat/unform';
+import { Form, Input, SubmitHandler } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
 import logo from '~/assets/logo.svg';
@@ -20,7 +20,7 @@ const SignIn = () => {
   const { signInRequest } = AuthActions;
   const loading = useSelector((state) => state.auth.loading);
 
-  const handleSubmit = ({ email, password }) => {
+  const handleSubmit: SubmitHandler = ({ email, password }) => {
     dispatch(signInRequest(email, password));
   };
 

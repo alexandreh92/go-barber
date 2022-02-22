@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Input } from '@rocketseat/unform';
+import { Form, Input, SubmitHandler } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
 import logo from '~/assets/logo.svg';
@@ -20,7 +20,12 @@ const schema = Yup.object().shape({
 });
 
 const SignUp = () => {
-  const handleSubmit = ({ name, email, password, password_confirmation }) => {
+  const handleSubmit: SubmitHandler = ({
+    name,
+    email,
+    password,
+    password_confirmation,
+  }) => {
     console.log(name, email, password, password_confirmation);
   };
 

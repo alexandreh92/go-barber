@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Form, Input } from '@rocketseat/unform';
+import { Form, Input, SubmitHandler } from '@rocketseat/unform';
 
 import UserActions from '~/store/ducks/user';
 import AuthActions from '~/store/ducks/auth';
+import { UpdateProfileRequest } from '~/store/ducks/user/types';
 import AvatarInput from './AvatarInput';
 
 import { Container } from './styles';
@@ -15,7 +16,7 @@ const Profile = () => {
   const { updateProfileRequest } = UserActions;
   const { signOut } = AuthActions;
 
-  const handleSubmit = (data) => {
+  const handleSubmit: SubmitHandler<UpdateProfileRequest> = (data) => {
     dispatch(updateProfileRequest(data));
   };
 
@@ -25,8 +26,8 @@ const Profile = () => {
 
   return (
     <Container>
-      <Form initialData={profile} onSubmit={handleSubmit}>
-        <AvatarInput name="avatar_id" />
+      <Form initialData={profile} onSubmit={handleSubmit as SubmitHandler}>
+        <AvatarInput />
 
         <Input name="name" placeholder="Nome Completo" />
         <Input name="email" disabled placeholder="Seu endereço de email" />
