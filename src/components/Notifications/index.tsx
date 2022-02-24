@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { MdNotifications } from 'react-icons/md';
 import { parseISO, formatDistance } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+import en from 'date-fns/locale/en-US';
 
 import api from '~/services/api';
 
@@ -37,7 +37,7 @@ const Notifications = () => {
         new Date(),
         {
           addSuffix: true,
-          locale: pt,
+          locale: en,
         }
       ),
     }));
@@ -72,14 +72,14 @@ const Notifications = () => {
         <Scroll>
           {notifications.map((notification) => (
             <Notification key={notification.id} unread={!notification.read}>
-              <p>Voce possui um novo agendamento para amannha</p>
-              <time>ha 2 dias</time>
+              <p>{notification.content}</p>
+              <time>{notification.timeDistance}</time>
               {!notification.read && (
                 <button
                   type="button"
                   onClick={() => handleMarkAsread(notification.id)}
                 >
-                  Marcar como lida
+                  Mark as read
                 </button>
               )}
             </Notification>

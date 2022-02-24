@@ -13,7 +13,7 @@ import {
   isEqual,
   parseISO,
 } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+import en from 'date-fns/locale/en-US';
 
 import { utcToZonedTime } from 'date-fns-tz';
 
@@ -33,7 +33,7 @@ const Dashboard = () => {
   const [date, setDate] = useState(new Date());
 
   const dateFormatted = useMemo(
-    () => format(date, "d 'de' MMMM", { locale: pt }),
+    () => format(date, 'MMMM d', { locale: en }),
     [date]
   );
 
@@ -88,7 +88,7 @@ const Dashboard = () => {
           <Time key={time.time} past={time.past} available={!time.appointment}>
             <strong>{time.time}</strong>
             <span>
-              {time.appointment ? time.appointment.user.name : 'Em aberto'}
+              {time.appointment ? time.appointment.user.name : 'Available'}
             </span>
           </Time>
         ))}

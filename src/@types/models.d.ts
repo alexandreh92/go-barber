@@ -19,6 +19,7 @@ declare global {
     read: boolean;
     created_at: string;
     updated_at: string;
+    timeDistance: string;
   }
 
   export interface Appointment {

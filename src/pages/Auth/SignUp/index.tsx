@@ -1,32 +1,37 @@
 /* eslint-disable no-console */
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Form, Input, SubmitHandler } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
+import AuthActions from '~/store/ducks/auth';
+
 import logo from '~/assets/logo.svg';
 
 const schema = Yup.object().shape({
-  name: Yup.string().required('Nome é obrigatório'),
-  email: Yup.string()
-    .email('Insira um e-mail válido')
-    .required('O e-mail é obrigatório'),
+  name: Yup.string().required('Name is required'),
+  email: Yup.string().email('Invalid e-mail').required('E-mail is required'),
   password: Yup.string()
-    .min(6, 'No mínimo 6 caracteres')
-    .required('A senha é obrigatória'),
+    .min(6, 'Minimum 6 characters')
+    .required('Password is required'),
   password_confirmation: Yup.string()
-    .min(6, 'No mínimo 6 caracteres')
-    .required('A confirmação de senha é obrigatória'),
+    .min(6, 'Minimum 6 characters')
+    .required('Password confirmation is required'),
 });
 
 const SignUp = () => {
+  const dispatch = useDispatch();
+
   const handleSubmit: SubmitHandler = ({
     name,
     email,
     password,
     password_confirmation,
   }) => {
-    console.log(name, email, password, password_confirmation);
+    dispatch(
+      AuthActions.signUpRequest(name, email, password, password_confirmation)
+    );
   };
 
   return (
@@ -34,21 +39,17 @@ const SignUp = () => {
       <img src={logo} alt="GoBarber" />
 
       <Form schema={schema} onSubmit={handleSubmit}>
-        <Input name="name" placeholder="Nome Completo" />
-        <Input name="email" type="email" placeholder="Seu e-mail" />
-        <Input
-          name="password"
-          type="password"
-          placeholder="Sua senha secreta"
-        />
+        <Input name="name" placeholder="Your name" />
+        <Input name="email" type="email" placeholder="Your e-mail" />
+        <Input name="password" type="password" placeholder="Your password" />
         <Input
           name="password_confirmation"
           type="password"
-          placeholder="Repita sua senha"
+          placeholder="Password confirmation"
         />
 
-        <button type="submit">Criar Conta</button>
-        <Link to="/">Já tenho login</Link>
+        <button type="submit">Register</button>
+        <Link to="/">Sign in</Link>
       </Form>
     </>
   );

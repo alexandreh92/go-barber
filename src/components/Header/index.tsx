@@ -28,7 +28,7 @@ const Header = () => {
           <Profile>
             <div>
               <strong>{name}</strong>
-              <Link to="/profile">Meu Perfil</Link>
+              <Link to="/profile">My Profile</Link>
             </div>
             <img
               src={

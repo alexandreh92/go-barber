@@ -2,12 +2,20 @@ import { DefaultActionTypes, DefaultActionCreators } from 'reduxsauce';
 import { AnyAction } from 'redux';
 
 export interface SignInRequestPayload extends AnyAction {
-  token: string;
+  email: string;
+  password: string;
 }
 
 export interface SignInSuccessPayload extends AnyAction {
   token: string;
   user: User;
+}
+
+export interface SignUpRequestPayload extends AnyAction {
+  name: string;
+  email: string;
+  password: string;
+  password_confirmation: string;
 }
 
 /* Action Types */
@@ -25,8 +33,13 @@ export interface AuthActionCreatorTypes extends DefaultActionCreators {
   signInRequest: (email: string, password: string) => SignInRequestPayload;
   signInSuccess: (token: string, user: User) => SignInSuccessPayload;
   signOutRequest: () => AnyAction;
-  signUpRequest: () => AnyAction;
-  signUpSuccess: () => AnyAction;
+  signUpRequest: (
+    name: string,
+    email: string,
+    password: string,
+    password_confirmation: string
+  ) => SignUpRequestPayload;
+  signUpSuccess: (token: string, user: User) => SignInSuccessPayload;
   setLoading: () => AnyAction;
 }
 

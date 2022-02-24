@@ -14,14 +14,14 @@ const Profile = () => {
   const profile = useSelector((state) => state.user.profile);
 
   const { updateProfileRequest } = UserActions;
-  const { signOut } = AuthActions;
+  const { signOutRequest } = AuthActions;
 
   const handleSubmit: SubmitHandler<UpdateProfileRequest> = (data) => {
     dispatch(updateProfileRequest(data));
   };
 
   const handleLogout = () => {
-    dispatch(signOut());
+    dispatch(signOutRequest());
   };
 
   return (
@@ -29,25 +29,29 @@ const Profile = () => {
       <Form initialData={profile} onSubmit={handleSubmit as SubmitHandler}>
         <AvatarInput />
 
-        <Input name="name" placeholder="Nome Completo" />
-        <Input name="email" disabled placeholder="Seu endereço de email" />
+        <Input name="name" placeholder="Your name" />
+        <Input name="email" disabled placeholder="Your address" />
         <hr />
         <Input
           type="password"
           name="actualPassword"
-          placeholder="Sua senha atual"
+          placeholder="Your current password"
         />
-        <Input type="password" name="password" placeholder="Sua nova senha" />
+        <Input
+          type="password"
+          name="password"
+          placeholder="Your new password"
+        />
         <Input
           type="password"
           name="passwordConfirmation"
-          placeholder="Confirmação de senha"
+          placeholder="Password confirmation"
         />
 
-        <button type="submit">Atualizar Perfil</button>
+        <button type="submit">Update profile</button>
       </Form>
       <button type="button" onClick={handleLogout}>
-        Sair do Go Barber
+        Sign out
       </button>
     </Container>
   );

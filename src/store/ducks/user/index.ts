@@ -4,7 +4,7 @@ import Immutable from 'seamless-immutable';
 import { Types, Creators } from './actionCreators';
 import { UserState, UpdateProfileSuccessPayload } from './types';
 import { AuthTypes } from '../auth';
-import { SignInRequestPayload } from '../auth/types';
+import { SignInSuccessPayload } from '../auth/types';
 
 export const UserTypes = Types;
 export default Creators;
@@ -17,7 +17,7 @@ export const INITIAL_STATE: UserState = Immutable({
 
 /* Reducers */
 
-export const success: Reducer<UserState, SignInRequestPayload> = (
+export const success: Reducer<UserState, SignInSuccessPayload> = (
   state,
   { user }
 ) => ({
@@ -40,6 +40,7 @@ export const updateSuccess: Reducer<UserState, UpdateProfileSuccessPayload> = (
 
 export const reducer = createReducer<UserState>(INITIAL_STATE, {
   [AuthTypes.SIGN_IN_SUCCESS]: success,
+  [AuthTypes.SIGN_UP_SUCCESS]: success,
   [AuthTypes.SIGN_OUT_REQUEST]: logout,
   [UserTypes.UPDATE_PROFILE_SUCCESS]: updateSuccess,
 });

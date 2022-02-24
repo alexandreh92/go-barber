@@ -2,7 +2,7 @@ import { createReducer } from 'reduxsauce';
 import Immutable from 'seamless-immutable';
 
 import { Types, Creators } from './actionCreators';
-import { AuthState, SignInRequestPayload } from './types';
+import { AuthState, SignInSuccessPayload } from './types';
 
 export const AuthTypes = Types;
 export default Creators;
@@ -17,7 +17,7 @@ export const INITIAL_STATE: AuthState = Immutable({
 
 /* Reducers */
 
-export const success: Reducer<AuthState, SignInRequestPayload> = (
+export const success: Reducer<AuthState, SignInSuccessPayload> = (
   state,
   { token }
 ) => ({
@@ -43,5 +43,6 @@ export const loading: Reducer<AuthState> = (state) => ({
 export const reducer = createReducer<AuthState>(INITIAL_STATE, {
   [Types.SIGN_IN_SUCCESS]: success,
   [Types.SIGN_OUT_REQUEST]: logout,
+  [Types.SIGN_UP_SUCCESS]: success,
   [Types.SET_LOADING]: loading,
 });

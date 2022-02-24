@@ -12,8 +12,8 @@ const { Types, Creators } = createActions<
     signInRequest: ['email', 'password'],
     signInSuccess: ['token', 'user'],
     signOutRequest: null,
-    signUpRequest: null,
-    signUpSuccess: null,
+    signUpRequest: ['name', 'email', 'password', 'password_confirmation'],
+    signUpSuccess: ['token', 'user'],
     setLoading: null,
   },
   { prefix: '@auth/' }
