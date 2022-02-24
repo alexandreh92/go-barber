@@ -38,7 +38,8 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test"
+    "test": "react-app-rewired test",
+    "lint": "eslint --ext .ts --ext .tsx --fix src/ --report-unused-disable-directives"
   },
   "eslintConfig": {
     "extends": [
