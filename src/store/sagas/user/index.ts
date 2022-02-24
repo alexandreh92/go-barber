@@ -4,8 +4,10 @@ import { toastr } from 'react-redux-toastr';
 import api from '~/services/api';
 
 import UserActions from '~/store/ducks/user';
+import { UpdateProfileRequest } from '~/store/ducks/user/types';
+import axios, { AxiosResponse } from 'axios';
 
-export function* updateProfile({ data }) {
+export function* updateProfile({ data }: UpdateProfileRequest) {
   try {
     const { name, password, passwordConfirmation, actualPassword, avatar } =
       data;
@@ -21,13 +23,14 @@ export function* updateProfile({ data }) {
       fd.append('password_confirmation', passwordConfirmation);
     }
 
-    const response = yield call(api.put, 'profile', fd);
+    const response: AxiosResponse<User> = yield call(api.put, 'profile', fd);
 
     toastr.success('Sucesso!', 'Perfil atualizado com sucesso.');
 
     yield put(UserActions.updateProfileSuccess(response.data));
   } catch (error) {
-    toastr.error('Erro', error.response?.data?.errors[0]);
+    if (axios.isAxiosError(error))
+      toastr.error('Erro', error.response?.data?.errors[0]);
     yield put(UserActions.updateProfileFailure());
   }
 }

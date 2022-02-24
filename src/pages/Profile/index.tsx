@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Form, Input } from '@rocketseat/unform';
+import { Form, Input, SubmitHandler } from '@rocketseat/unform';
 
 import UserActions from '~/store/ducks/user';
 import AuthActions from '~/store/ducks/auth';
+import { UpdateProfileRequest } from '~/store/ducks/user/types';
 import AvatarInput from './AvatarInput';
 
 import { Container } from './styles';
@@ -13,40 +14,44 @@ const Profile = () => {
   const profile = useSelector((state) => state.user.profile);
 
   const { updateProfileRequest } = UserActions;
-  const { signOut } = AuthActions;
+  const { signOutRequest } = AuthActions;
 
-  const handleSubmit = (data) => {
+  const handleSubmit: SubmitHandler<UpdateProfileRequest> = (data) => {
     dispatch(updateProfileRequest(data));
   };
 
   const handleLogout = () => {
-    dispatch(signOut());
+    dispatch(signOutRequest());
   };
 
   return (
     <Container>
-      <Form initialData={profile} onSubmit={handleSubmit}>
-        <AvatarInput name="avatar_id" />
+      <Form initialData={profile} onSubmit={handleSubmit as SubmitHandler}>
+        <AvatarInput />
 
-        <Input name="name" placeholder="Nome Completo" />
-        <Input name="email" disabled placeholder="Seu endereço de email" />
+        <Input name="name" placeholder="Your name" />
+        <Input name="email" disabled placeholder="Your address" />
         <hr />
         <Input
           type="password"
           name="actualPassword"
-          placeholder="Sua senha atual"
+          placeholder="Your current password"
         />
-        <Input type="password" name="password" placeholder="Sua nova senha" />
+        <Input
+          type="password"
+          name="password"
+          placeholder="Your new password"
+        />
         <Input
           type="password"
           name="passwordConfirmation"
-          placeholder="Confirmação de senha"
+          placeholder="Password confirmation"
         />
 
-        <button type="submit">Atualizar Perfil</button>
+        <button type="submit">Update profile</button>
       </Form>
       <button type="button" onClick={handleLogout}>
-        Sair do Go Barber
+        Sign out
       </button>
     </Container>
   );

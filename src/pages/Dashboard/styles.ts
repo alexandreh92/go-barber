@@ -31,7 +31,9 @@ export const Container = styled.div`
   }
 `;
 
-export const Time = styled.li`
+type StyledTime = { past?: boolean; available?: boolean };
+
+export const Time = styled.li<StyledTime>`
   padding: 20px;
   border-radius: 4px;
   background: #fff;

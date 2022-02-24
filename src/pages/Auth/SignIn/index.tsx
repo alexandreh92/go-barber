@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Form, Input } from '@rocketseat/unform';
+import { Form, Input, SubmitHandler } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
 import logo from '~/assets/logo.svg';
@@ -9,10 +9,8 @@ import logo from '~/assets/logo.svg';
 import AuthActions from '~/store/ducks/auth';
 
 const schema = Yup.object().shape({
-  email: Yup.string()
-    .email('Insira um e-mail válido')
-    .required('O e-mail é obrigatório'),
-  password: Yup.string().required('A senha é obrigatória'),
+  email: Yup.string().email('Invalid e-mail').required('E-mail is required'),
+  password: Yup.string().required('Password is required'),
 });
 
 const SignIn = () => {
@@ -20,7 +18,7 @@ const SignIn = () => {
   const { signInRequest } = AuthActions;
   const loading = useSelector((state) => state.auth.loading);
 
-  const handleSubmit = ({ email, password }) => {
+  const handleSubmit: SubmitHandler = ({ email, password }) => {
     dispatch(signInRequest(email, password));
   };
 
@@ -29,18 +27,14 @@ const SignIn = () => {
       <img src={logo} alt="GoBarber" />
 
       <Form schema={schema} onSubmit={handleSubmit}>
-        <Input name="email" type="email" placeholder="Seu e-mail" />
-        <Input
-          name="password"
-          type="password"
-          placeholder="Sua senha secreta"
-        />
+        <Input name="email" type="email" placeholder="Your e-mail" />
+        <Input name="password" type="password" placeholder="Your password" />
 
         <button type="submit" disabled={loading}>
-          {loading ? 'Carregando...' : 'Acessar'}
+          {loading ? 'Loading...' : 'Sign in'}
         </button>
 
-        <Link to="/register">Criar conta gratuita</Link>
+        <Link to="/register">Create a free account</Link>
       </Form>
     </>
   );

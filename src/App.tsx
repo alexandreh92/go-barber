@@ -2,7 +2,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { Router } from 'react-router-dom';
 import ReduxToastr from 'react-redux-toastr';
 
 import '~/config/ReactotronConfig';
@@ -27,7 +26,6 @@ const App = () => (
           newestOnTop={false}
           preventDuplicates
           position="bottom-right"
-          getState={(state) => state.toastr}
           transitionIn="fadeIn"
           transitionOut="fadeOut"
           progressBar

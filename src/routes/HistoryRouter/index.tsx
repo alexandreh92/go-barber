@@ -1,8 +1,14 @@
-/* eslint-disable react/prop-types */
-import { useLayoutEffect, useState } from 'react';
+import React, { ReactNode, useLayoutEffect, useState } from 'react';
 import { Router } from 'react-router-dom';
+import { BrowserHistory } from 'history';
 
-const CustomRouter = ({ basename, children, history }) => {
+interface HistoryRouterProps {
+  basename?: string;
+  children: ReactNode;
+  history: BrowserHistory;
+}
+
+const HistoryRouter = ({ basename, children, history }: HistoryRouterProps) => {
   const [state, setState] = useState({
     action: history.action,
     location: history.location,
@@ -22,4 +28,4 @@ const CustomRouter = ({ basename, children, history }) => {
   );
 };
 
-export default CustomRouter;
+export default HistoryRouter;

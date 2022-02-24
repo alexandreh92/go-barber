@@ -6,7 +6,9 @@ export const Container = styled.div`
   position: relative;
 `;
 
-export const Badge = styled.button`
+type StyledBadge = { hasUnread?: boolean };
+
+export const Badge = styled.button<StyledBadge>`
   background: none;
   border: 0;
   position: relative;
@@ -27,7 +29,9 @@ export const Badge = styled.button`
     `}
 `;
 
-export const NotificationList = styled.div`
+type StyledNotificationList = { visible?: boolean };
+
+export const NotificationList = styled.div<StyledNotificationList>`
   position: absolute;
   width: 260px;
   left: calc(50% - 130px);
@@ -49,7 +53,9 @@ export const NotificationList = styled.div`
   }
 `;
 
-export const Notification = styled.div`
+type StyledNotification = { unread?: boolean };
+
+export const Notification = styled.div<StyledNotification>`
   color: #fff;
 
   & + div {

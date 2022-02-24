@@ -1,10 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import Header from '~/components/Header';
 import { Wrapper } from './styles';
 
-const DefaultLayout = ({ children }) => (
+interface DefaultLayoutProps {
+  children: React.ReactNode;
+}
+
+const DefaultLayout = ({ children }: DefaultLayoutProps) => (
   <Wrapper>
     <Header />
     {children}
@@ -12,7 +15,3 @@ const DefaultLayout = ({ children }) => (
 );
 
 export default DefaultLayout;
-
-DefaultLayout.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.node, PropTypes.func]).isRequired,
-};

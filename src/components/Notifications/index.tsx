@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { MdNotifications } from 'react-icons/md';
 import { parseISO, formatDistance } from 'date-fns';
-import pt from 'date-fns/locale/pt';
+import en from 'date-fns/locale/en-US';
 
 import api from '~/services/api';
 
@@ -14,9 +14,13 @@ import {
   Scroll,
 } from './styles';
 
+interface NotificationsResponse {
+  notifications: Notification[];
+}
+
 const Notifications = () => {
   const [visible, setVisible] = useState(false);
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
 
   const hasUnread = useMemo(
     () => !!notifications.find((notification) => notification.read === false),
@@ -24,16 +28,16 @@ const Notifications = () => {
   );
 
   const loadNotifications = useCallback(async () => {
-    const response = await api.get('notifications');
+    const response = await api.get<NotificationsResponse>('notifications');
 
-    const data = response.data.map((notification) => ({
+    const data = response.data.notifications.map((notification) => ({
       ...notification,
       timeDistance: formatDistance(
         parseISO(notification.created_at),
         new Date(),
         {
           addSuffix: true,
-          locale: pt,
+          locale: en,
         }
       ),
     }));
@@ -49,7 +53,7 @@ const Notifications = () => {
     setVisible(!visible);
   };
 
-  const handleMarkAsread = async (id) => {
+  const handleMarkAsread = async (id: number) => {
     await api.patch(`notifications/${id}`);
 
     setNotifications(
@@ -68,14 +72,14 @@ const Notifications = () => {
         <Scroll>
           {notifications.map((notification) => (
             <Notification key={notification.id} unread={!notification.read}>
-              <p>Voce possui um novo agendamento para amannha</p>
-              <time>ha 2 dias</time>
+              <p>{notification.content}</p>
+              <time>{notification.timeDistance}</time>
               {!notification.read && (
                 <button
                   type="button"
                   onClick={() => handleMarkAsread(notification.id)}
                 >
-                  Marcar como lida
+                  Mark as read
                 </button>
               )}
             </Notification>

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Routes as Switch, Route } from 'react-router-dom';
 
 import SignIn from '~/pages/Auth/SignIn';
@@ -11,7 +12,7 @@ import PrivateRoute from './PrivateRoute';
 const Routes = () => (
   <Switch>
     <Route element={<AuthRoute />}>
-      <Route path="/" exact element={<SignIn />} />
+      <Route path="/" element={<SignIn />} />
       <Route path="/register" element={<SignUp />} />
     </Route>
     <Route element={<PrivateRoute />}>
